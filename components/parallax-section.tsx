@@ -2,9 +2,10 @@
 
 import { useParallax } from "@/hooks/use-parallax"
 import type { ReactNode } from "react"
+import { useEffect, useState } from "react"
 
 interface ParallaxSectionProps {
-  children: ReactNode
+  children?: ReactNode
   backgroundImage: string
   speed?: number
   className?: string
@@ -21,6 +22,13 @@ export function ParallaxSection({
   overlayOpacity = 0.4,
 }: ParallaxSectionProps) {
   const scrollY = useParallax()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null 
 
   return (
     <section className={`relative overflow-hidden ${className}`}>
@@ -30,18 +38,27 @@ export function ParallaxSection({
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          transform: `translateY(${scrollY * speed}px)`,
-          scale: "1.1", // Slight scale to prevent gaps during parallax
+          backgroundAttachment: "fixed", // ✅ Keeps background visible on scroll
+          transform: `translate3d(0, ${scrollY * speed}px, 0)`,
+          zIndex: 0,
         }}
       />
 
       {/* Overlay */}
-      {overlay && <div className="absolute inset-0 bg-black" style={{ opacity: overlayOpacity }} />}
+      {overlay && (
+        <div
+          className="absolute inset-0 z-10"
+          style={{
+            backgroundColor: "black",
+            opacity: overlayOpacity,
+          }}
+        />
+      )}
 
-      {/* Content */}
-      <div className="relative z-10">{children}</div>
+      {/* Foreground Content */}
+      <div className="relative z-20">{children}</div>
     </section>
   )
 }

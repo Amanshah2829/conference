@@ -71,7 +71,7 @@ export function ContactSection() {
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-6" />
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Have questions about the conference or need registration help? Reach out and we’ll get back to you within 24
+            Have questions about the conference? Reach out and we’ll get back to you within 24
             hours.
           </p>
         </div>

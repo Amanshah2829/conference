@@ -4,83 +4,92 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, MapPin } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { AnimatedSection } from "./animated-section"
 import { StaggeredAnimation } from "./staggered-animation"
 
 export function SpeakersSection() {
   const speakers = [
     {
-      name: "Dr. Sarah Mitchell",
-      title: "UN Special Rapporteur on Oceans",
-      affiliation: "United Nations",
+      name: "Dr. Ronan Long",
+      title: "Director",
+      affiliation: "World Maritime University - Sasakawa Global Ocean Institute",
+      country: "Sweden",
+      bio: "Internationally recognized scholar in ocean governance and law of the sea. Leads global policy research at WMU.",
+      image: "/speakers/ronan-long.jpeg",
+      keynote: true,
+      link: "https://www.wmu.se/people/ronan-long"
+    },
+    {
+      name: "Prof. Sanjeevi Shanthakumar",
+      title: "Director",
+      affiliation: "Gujarat National Law University",
+      country: "India",
+      bio: "Expert in environmental and water law, actively involved in capacity building for sustainable development goals.",
+      image: "/speakers/sanjeevi-shanthakumar.jpeg",
+      keynote: false,
+      link: "https://www.linkedin.com/in/sanjeevi-shanthakumar-4a559643/"
+    },
+    {
+      name: "Prof. James Kraska",
+      title: "Chair in Oceans Law and Policy",
+      affiliation: "U.S. Naval War College",
       country: "United States",
-      bio: "Leading expert in international ocean law with over 20 years of experience in marine policy development and implementation.",
-      image: "/placeholder.svg?height=300&width=300",
+      bio: "Renowned authority on international maritime law and security in the Indo-Pacific region.",
+      image: "/speakers/james-kraska.jpeg",
       keynote: true,
+      link: "https://www.linkedin.com/in/jameskraska/"
     },
     {
-      name: "Judge Maria Santos",
-      title: "Judge",
-      affiliation: "International Tribunal for the Law of the Sea",
-      country: "Brazil",
-      bio: "Distinguished jurist specializing in maritime boundary disputes and UNCLOS interpretation.",
-      image: "/placeholder.svg?height=300&width=300",
-      keynote: true,
-    },
-    {
-      name: "Dr. Elena Rodriguez",
-      title: "Lead Author",
-      affiliation: "IPCC Working Group II",
-      country: "Spain",
-      bio: "Climate scientist focusing on ocean-climate interactions and impacts on coastal communities.",
-      image: "/placeholder.svg?height=300&width=300",
-      keynote: true,
-    },
-    {
-      name: "Prof. Rajesh Kumar",
-      title: "Professor of International Law",
-      affiliation: "Jawaharlal Nehru University",
-      country: "India",
-      bio: "Expert in maritime law and Indian Ocean regional cooperation with extensive research on UNCLOS.",
-      image: "/placeholder.svg?height=300&width=300",
-      keynote: false,
-    },
-    {
-      name: "Dr. Priya Sharma",
+      name: "Dr. Nilufer Oral",
       title: "Director",
-      affiliation: "Institute for Ocean Studies",
-      country: "India",
-      bio: "Marine policy researcher specializing in fisheries management and coastal zone governance.",
-      image: "/placeholder.svg?height=300&width=300",
-      keynote: false,
-    },
-    {
-      name: "Dr. James Okoye",
-      title: "Senior Research Fellow",
-      affiliation: "African Maritime Law Institute",
-      country: "Nigeria",
-      bio: "Expert in African maritime law and sustainable fisheries management in developing countries.",
-      image: "/placeholder.svg?height=300&width=300",
-      keynote: false,
-    },
-    {
-      name: "Prof. Ahmed Hassan",
-      title: "Professor of Maritime Law",
-      affiliation: "Cairo University",
-      country: "Egypt",
-      bio: "Specialist in maritime boundary delimitation and Red Sea regional cooperation.",
-      image: "/placeholder.svg?height=300&width=300",
-      keynote: false,
-    },
-    {
-      name: "Dr. Hiroshi Tanaka",
-      title: "Director",
-      affiliation: "Ocean Technology Institute",
-      country: "Japan",
-      bio: "Pioneer in digital ocean monitoring technologies and AI applications in marine science.",
-      image: "/placeholder.svg?height=300&width=300",
+      affiliation: "Centre for International Law, National University of Singapore",
+      country: "Singapore",
+      bio: "Member of the International Law Commission and expert in climate change law and oceans.",
+      image: "/speakers/nilufer-oral.jpeg",
       keynote: true,
+      link: "https://www.linkedin.com/in/nilufer-oral-8b467314/"
     },
+    {
+      name: "Dr. Norman Martinez",
+      title: "Senior Lecturer",
+      affiliation: "World Maritime University",
+      country: "Sweden",
+      bio: "Experienced maritime law educator and IMO legal committee expert with focus on safety and legal frameworks.",
+      image: "/speakers/norman-martinez.jpg",
+      keynote: false,
+      link: "https://www.linkedin.com/in/norman-martinez-11738824/"
+    },
+    {
+      name: "Dr. Pradeep Chauhan",
+      title: "Director General",
+      affiliation: "National Maritime Foundation",
+      country: "India",
+      bio: "Strategic thinker in maritime security and blue economy policy advisory in the Indian Ocean Region.",
+      image: "/speakers/pradeep-chauhan.webp",
+      keynote: false,
+      link: "https://www.linkedin.com/in/pradeep-chauhan-a4bab144/"
+    },
+    {
+      name: "Prof. Young Kil Park",
+      title: "Professor of Law",
+      affiliation: "Korea Maritime Institute",
+      country: "South Korea",
+      bio: "Specialist in East Asia maritime governance and regional cooperation for ocean sustainability.",
+      image: "/speakers/young-kil-park.png",
+      keynote: false,
+      link: "https://www.cigionline.org/people/young-kil-park/"
+    },
+    {
+      name: "Dr. Beatriz Martinez Romera",
+      title: "Associate Professor of Environmental Law",
+      affiliation: "University of Copenhagen",
+      country: "Denmark",
+      bio: "Researcher in climate change law, ocean governance, and environmental protection in international law.",
+      image: "/speakers/beatriz-martinez-romera.png",
+      keynote: false,
+      link: "https://www.linkedin.com/in/beatriz-martinez-romera-31a31453/"
+    }
   ]
 
   const keynoteSpeakers = speakers.filter((speaker) => speaker.keynote)
@@ -116,10 +125,12 @@ export function SpeakersSection() {
           {speaker.country}
         </div>
         <p className="text-gray-600 text-sm leading-relaxed mb-4">{speaker.bio}</p>
-        <Button variant="outline" size="sm" className="w-full group-hover:bg-blue-50 transition-colors">
-          <ExternalLink className="w-4 h-4 mr-2" />
-          View Profile
-        </Button>
+        <Link href={speaker.link} target="_blank">
+          <Button variant="outline" size="sm" className="w-full group-hover:bg-blue-50 transition-colors">
+            <ExternalLink className="w-4 h-4 mr-2" />
+            View Profile
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   )
@@ -135,7 +146,6 @@ export function SpeakersSection() {
           </p>
         </AnimatedSection>
 
-        {/* Keynote Speakers */}
         <div className="mb-16">
           <AnimatedSection animation="fade-up" delay={200}>
             <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Keynote Speakers</h3>
@@ -149,7 +159,6 @@ export function SpeakersSection() {
           </StaggeredAnimation>
         </div>
 
-        {/* Panel Speakers */}
         <div>
           <AnimatedSection animation="fade-up" delay={200}>
             <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Panel Speakers & Moderators</h3>
@@ -162,13 +171,6 @@ export function SpeakersSection() {
             {panelSpeakers.map((speaker, index) => createSpeakerCard(speaker, index))}
           </StaggeredAnimation>
         </div>
-
-        <AnimatedSection className="text-center mt-12" animation="scale-up" delay={400}>
-          <p className="text-gray-600 mb-4">More speakers to be announced soon!</p>
-          <Button variant="outline" size="lg" className="hover:bg-blue-50 transition-colors">
-            View All Speakers
-          </Button>
-        </AnimatedSection>
       </div>
     </section>
   )
